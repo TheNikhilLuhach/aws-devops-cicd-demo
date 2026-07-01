@@ -1,115 +1,347 @@
-# 🚀 AWS DevOps CI/CD Pipeline Project
+# 🚀 AWS DevOps CI/CD Pipeline Demo
 
-## Project Description
-
-This project demonstrates the implementation of a Continuous Integration and Continuous Deployment (CI/CD) pipeline using AWS Cloud services and Jenkins.
-
-Whenever changes are pushed to the GitHub repository, Jenkins automatically retrieves the latest source code and deploys the updated website to an Amazon EC2 instance running the Apache Web Server.
+A complete CI/CD pipeline project built using **AWS EC2**, **Jenkins**, **GitHub**, and **Apache HTTP Server**. This project demonstrates how code changes pushed to GitHub are automatically built and deployed to an AWS EC2 instance using Jenkins.
 
 ---
 
-## Project Architecture
+# 📌 Project Overview
 
-Developer
+This project showcases a simple DevOps CI/CD workflow where a static website is automatically deployed whenever changes are pushed to the GitHub repository.
 
-↓
+The pipeline performs the following tasks:
 
-GitHub Repository
-
-↓
-
-Jenkins Server
-
-↓
-
-Build Process
-
-↓
-
-Deploy to Apache
-
-↓
-
-Amazon EC2
-
-↓
-
-Live Website
+- Fetches source code from GitHub
+- Builds the project
+- Deploys website files to Apache Web Server
+- Verifies successful deployment
+- Displays the updated website automatically
 
 ---
 
-## Technologies Used
+# 🏗️ Architecture
 
-- Amazon EC2
-- Apache Web Server
+```
+                 +----------------+
+                 |   GitHub Repo  |
+                 +--------+-------+
+                          |
+                     Git Push
+                          |
+                          ▼
+                 +----------------+
+                 |    Jenkins      |
+                 |  CI/CD Pipeline |
+                 +--------+--------+
+                          |
+                 Checkout Source Code
+                          |
+                     Build Project
+                          |
+                    Deploy Website
+                          |
+                          ▼
+                +-------------------+
+                | Apache Web Server |
+                |     AWS EC2       |
+                +-------------------+
+                          |
+                          ▼
+                   Static Website
+```
+
+---
+
+# 🛠️ Technologies Used
+
+- AWS EC2 (Amazon Linux 2023)
 - Jenkins
 - Git
 - GitHub
+- Apache HTTP Server (httpd)
 - HTML5
 - CSS3
-- Git Bash
-- AWS Cloud
+- Linux
+- Shell Commands
 
 ---
 
-## Project Files
+# 📂 Project Structure
 
 ```
-index.html
-style.css
-README.md
+aws-devops-cicd-demo/
+│
+├── Jenkinsfile
+├── index.html
+├── style.css
+└── README.md
+```
+
+---
+
+# ⚙️ Jenkins Pipeline Stages
+
+## Stage 1 – Checkout Source
+
+Downloads the latest code from GitHub.
+
+---
+
+## Stage 2 – Build
+
+Builds the project and verifies project files.
+
+---
+
+## Stage 3 – Deploy
+
+Copies website files to Apache Web Server directory.
+
+```
+/var/www/html/
+```
+
+---
+
+## Stage 4 – Verify
+
+Verifies deployment and ensures the website is available.
+
+---
+
+# 📜 Jenkinsfile Workflow
+
+```
+Checkout Code
+      ↓
+Build Project
+      ↓
+Deploy Website
+      ↓
+Verify Deployment
+      ↓
+Pipeline Success
+```
+
+---
+
+# 🚀 Deployment Steps
+
+### 1. Launch AWS EC2 Instance
+
+- Amazon Linux 2023
+- Open Port 22
+- Open Port 80
+- Open Port 8080
+
+---
+
+### 2. Install Java
+
+```bash
+sudo dnf install java-17-amazon-corretto -y
+```
+
+---
+
+### 3. Install Jenkins
+
+```bash
+sudo wget -O /etc/yum.repos.d/jenkins.repo \
+https://pkg.jenkins.io/redhat-stable/jenkins.repo
+
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+
+sudo dnf install jenkins -y
+```
+
+---
+
+### 4. Start Jenkins
+
+```bash
+sudo systemctl enable jenkins
+sudo systemctl start jenkins
+```
+
+---
+
+### 5. Install Apache
+
+```bash
+sudo dnf install httpd -y
+
+sudo systemctl enable httpd
+
+sudo systemctl start httpd
+```
+
+---
+
+### 6. Install Git
+
+```bash
+sudo dnf install git -y
+```
+
+---
+
+### 7. Configure Jenkins
+
+- Install Suggested Plugins
+- Create Admin User
+- Install Git Plugin
+- Configure GitHub Repository
+
+---
+
+### 8. Create Pipeline Job
+
+Pipeline Type
+
+```
+Pipeline Script from SCM
+```
+
+SCM
+
+```
+Git
+```
+
+Repository URL
+
+```
+https://github.com/TheNikhilLuhach/aws-devops-cicd-demo.git
+```
+
+Branch
+
+```
+main
+```
+
+Script Path
+
+```
 Jenkinsfile
 ```
 
 ---
 
-## Features
+### 9. Run Pipeline
 
-- Static Website Hosting
-- CI/CD Pipeline
-- Automated Deployment
+Click
+
+```
+Build Now
+```
+
+---
+
+### 10. Verify Website
+
+Open Browser
+
+```
+http://<EC2-Public-IP>
+```
+
+Example
+
+```
+http://18.xx.xx.xx
+```
+
+---
+
+# 📷 Project Output
+
+✔ Jenkins Pipeline Successful
+
+✔ GitHub Repository Connected
+
+✔ Automatic Deployment
+
+✔ Website Hosted on AWS EC2
+
+✔ Apache Server Running
+
+---
+
+# 📈 CI/CD Workflow
+
+```
+Developer
+    │
+    ▼
+GitHub Push
+    │
+    ▼
+Jenkins Detects Change
+    │
+    ▼
+Checkout Code
+    │
+    ▼
+Build
+    │
+    ▼
+Deploy
+    │
+    ▼
+Apache Web Server
+    │
+    ▼
+Live Website
+```
+
+---
+
+# ✅ Features
+
+- Jenkins CI/CD Pipeline
+- Automatic Deployment
 - GitHub Integration
-- Jenkins Build Automation
-- Apache Web Server Deployment
+- AWS EC2 Hosting
+- Apache Web Server
+- Static Website Deployment
+- Linux Based Deployment
+- Continuous Integration
+- Continuous Delivery
 
 ---
 
-## Steps Performed
+# 📚 Learning Outcomes
 
-1. Created an EC2 Instance.
-2. Installed Apache Web Server.
-3. Created a GitHub Repository.
-4. Uploaded Website Files.
-5. Installed Jenkins.
-6. Configured Jenkins Pipeline.
-7. Connected GitHub Repository.
-8. Automated Website Deployment.
-9. Verified Successful Build.
-10. Accessed Website using EC2 Public IP.
+Through this project, I learned:
 
----
-
-## Repository
-
-GitHub Repository
-
-https://github.com/TheNikhilLuhach/aws-devops-cicd-demo
+- Jenkins Installation
+- GitHub Integration
+- Pipeline Creation
+- Continuous Integration
+- Continuous Deployment
+- Apache Configuration
+- AWS EC2 Management
+- Linux Commands
+- Git Workflow
+- DevOps Basics
 
 ---
 
-## Author
+# 👨‍💻 Author
 
 **Nikhil Kumar**
 
-Cloud Computing with DevOps (AWS) Internship
+DevOps Intern
+
+GitHub:
+https://github.com/TheNikhilLuhach
+
+LinkedIn:
+https://www.linkedin.com/
 
 ---
 
-## Future Improvements
+# ⭐ If you found this project useful
 
-- Docker Integration
-- Kubernetes Deployment
-- Terraform Infrastructure
-- Ansible Configuration Management
-- AWS CodePipeline
-- GitHub Webhooks
+Please consider giving this repository a ⭐ on GitHub.
